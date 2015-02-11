@@ -14,27 +14,25 @@
 get_header(); ?>
 
 <div class="container">
-	<div class="section row">
-		<main role="main">
-			<div class="col-md-8">
-				<?php
-				// Start the loop.
-				while ( have_posts() ) : the_post();
+	<main role="main" class="row">
+		<div class="col-md-8">
+			<?php
+			// Start the loop.
+			while ( have_posts() ) : the_post();
 
-					// Include the page content template.
-					get_template_part( 'content', 'page' );
+				// Include the page content template.
+				get_template_part( 'content', 'page' );
 
-				// End the loop.
-				endwhile;
-				?>
-			</div> <!-- /.col -->
+			// End the loop.
+			endwhile;
+			?>
+		</div> <!-- /.col -->
 
-			<div id="sidebar" class="col-md-4 sidebar">
-				<?php dynamic_sidebar('Page Sidebar'); ?>
-			</div> <!-- /.col -->
+		<div id="sidebar" class="col-md-4 sidebar">
+			<?php dynamic_sidebar('Page Sidebar'); ?>
+		</div> <!-- /.col -->
 
-		</main>
-	</div> <!-- /.section -->
+	</main>
 </div> <!-- /.container -->
 
 <?php get_footer(); ?>

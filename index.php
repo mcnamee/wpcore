@@ -17,56 +17,48 @@
 get_header(); ?>
 
 <div class="container">
-	<div class="section row">
-		<main role="main">
-			<div class="col-md-8">
+	<main role="main" class="row">
+		<div class="col-md-8">
 
-			<?php if ( have_posts() ) : ?>
+		<?php if ( have_posts() ) : ?>
 
-				<?php if ( is_home() && ! is_front_page() ) : ?>
-					<header>
-						<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-					</header>
-				<?php endif; ?>
-
-				<?php
-				// Start the loop.
-				while ( have_posts() ) : the_post();
-
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'content', get_post_format() );
-
-				// End the loop.
-				endwhile;
-			?>
-
-			<nav>
-				<ul class="pager">
-					<li><?php next_posts_link('&laquo; Older Entries') ?></li>
-					<li><?php previous_posts_link('Newer Entries &raquo;') ?></li>
-				</ul>
-			</nav>
+			<?php if ( is_home() && ! is_front_page() ) : ?>
+				<header class="page-header">
+					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+				</header>
+			<?php endif; ?>
 
 			<?php
-			// If no content, include the "No posts found" template.
-			else :
-				get_template_part( 'content', 'none' );
+			// Start the loop.
+			while ( have_posts() ) : the_post();
 
-			endif;
-			?>
+				/*
+				 * Include the Post-Format-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+				 */
+				get_template_part( 'content', get_post_format() );
 
-			</div> <!-- /.col -->
+			// End the loop.
+			endwhile;
 
-			<div id="sidebar" class="col-md-4 sidebar">
-				<?php get_sidebar(); ?>
-			</div> <!-- /.col -->
+			/* Include Pager */
+			include('parts/pager.php');
 
-		</main>
-	</div> <!-- /.section -->
+		// If no content, include the "No posts found" template.
+		else :
+			get_template_part( 'content', 'none' );
+
+		endif;
+		?>
+
+		</div> <!-- /.col -->
+
+		<div id="sidebar" class="col-md-4 sidebar">
+			<?php dynamic_sidebar( 'sidebar-1' ); ?>
+		</div> <!-- /.col -->
+
+	</main>
 </div> <!-- /.container -->
 
 <?php get_footer(); ?>

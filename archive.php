@@ -18,8 +18,9 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div class="container">
+	<main role="main" class="row">
+		<div class="col-md-8">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -28,7 +29,7 @@ get_header(); ?>
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
 					the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				?>
-			</header><!-- .page-header -->
+			</header><!-- .entry_header -->
 
 			<?php
 			// Start the Loop.
@@ -43,13 +44,9 @@ get_header(); ?>
 
 			// End the loop.
 			endwhile;
-
-			// Previous/next page navigation.
-			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-				'next_text'          => __( 'Next page', 'twentyfifteen' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
-			) );
+		
+			/* Include Pager */
+			include('parts/pager.php');
 
 		// If no content, include the "No posts found" template.
 		else :
@@ -57,8 +54,14 @@ get_header(); ?>
 
 		endif;
 		?>
+        </div> <!-- /.col -->
 
-		</main><!-- .site-main -->
-	</section><!-- .content-area -->
+        <div id="sidebar" class="col-md-4 sidebar">
+            <?php dynamic_sidebar( 'sidebar-1' ); ?>
+        </div> <!-- /.col -->
+
+    </main>
+</div> <!-- /.container -->
+
 
 <?php get_footer(); ?>

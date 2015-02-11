@@ -9,8 +9,9 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div class="container">
+	<main role="main" class="row">
+		<div class="col-md-12">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -33,12 +34,9 @@ get_header(); ?>
 			// End the loop.
 			endwhile;
 
-			// Previous/next page navigation.
-			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-				'next_text'          => __( 'Next page', 'twentyfifteen' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
-			) );
+
+			/* Include Pager */
+			include('parts/pager.php');
 
 		// If no content, include the "No posts found" template.
 		else :
@@ -46,8 +44,7 @@ get_header(); ?>
 
 		endif;
 		?>
-
-		</main><!-- .site-main -->
-	</section><!-- .content-area -->
-
+		</div> <!-- /.col -->
+	</main>
+</div> <!-- /.container -->
 <?php get_footer(); ?>

@@ -11,7 +11,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php twentyfifteen_post_thumbnail(); ?>
+	<?php wpcore_post_thumbnail(); ?>
 
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
@@ -23,10 +23,10 @@
 
 	<?php if ( 'post' == get_post_type() ) : ?>
 
-		<footer class="entry-footer">
-			<?php twentyfifteen_entry_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<span class="edit-link">', '</span>' ); ?>
-		</footer><!-- .entry-footer -->
+	<?php
+		/* Entry/Post Meta */
+		include('parts/post-meta.php');
+	?>
 
 	<?php else : ?>
 

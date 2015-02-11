@@ -13,18 +13,17 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 		// Post thumbnail.
-		twentyfifteen_post_thumbnail();
+		wpcore_post_thumbnail();
 	?>
 
-	<header class="entry-header">
-		<?php
-			if ( is_single() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			else :
-				the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-			endif;
-		?>
-	</header><!-- .entry-header -->
+
+    <?php
+        if ( is_single() ) :
+            the_title( '<header class="page-header"><h1 class="page-title">', '</h1></header><!-- .page-header -->' );
+        else :
+            the_title( sprintf( '<header class="entry-header"><h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2></header><!-- .entry-header -->' );
+        endif;
+    ?>
 
 	<div class="entry-content">
 		<?php
@@ -52,9 +51,9 @@
 		endif;
 	?>
 
-	<footer class="entry-footer">
-		<?php twentyfifteen_entry_meta(); ?>
-		<?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<span class="edit-link">', '</span>' ); ?>
-	</footer><!-- .entry-footer -->
+	<?php
+		/* Entry/Post Meta */
+		include('parts/post-meta.php');
+	?>
 
 </article><!-- #post-## -->
