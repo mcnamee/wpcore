@@ -1,0 +1,71 @@
+// Themes
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+$brand-primary: darken(#428bca, 6.5%);
+$brand-secondary: darken(#428bca, 6.5%);
+$brand-tertiary: darken(#428bca, 6.5%);
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #fff;
+//** Global text color on `<body>`.
+$text-color:            #999999;
+//** General use border color
+$border-color:          #dddddd;
+
+//** Global textual link color.
+$link-color:            $brand-primary;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%);
+//** Link hover decoration.
+$link-hover-decoration: underline;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$line-height-base:        1.42858 !default; // 20/14 limited to 5 decimal points to fix some rounding errors.
+
+
+//== Navbar
+//
+//##
+$navbar-margin-bottom: 0px;
+
+
+//== Footer
+//
+//##
+$footer-num-columns: 6; // set the number of columns, and let SCSS handle the rest!
+
+//** Settings for the testimonial at the bottom of the page.
+$footer-testimonial-padding: 60px;
+$footer-testimonial-color: #ffffff;
+$footer-testimonial-background-color: $body-bg;
+
+//** Settings for the top section of the footer.
+$footer-top-padding: 10px;
+$footer-top-color: #ffffff;
+$footer-top-background-color: lighten($brand-primary, 10%);
+
+//** Settings for the main section of the footer.
+$footer-padding: 20px;
+$footer-color: #ffffff;
+$footer-background-color: $brand-primary;
+
+//** Settings for the bottom section of the footer.
+$footer-bottom-padding: 15px;
+$footer-bottom-color: #ffffff;
+$footer-bottom-background-color: darken($brand-primary, 10%);

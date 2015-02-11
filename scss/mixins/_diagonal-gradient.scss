@@ -1,0 +1,7 @@
+// All side border-radius
+
+@mixin diagonal-gradient($bottom_colour, $top_colour, $angle: 0deg) {
+  background: $bottom_colour; /* Old browsers */
+  background: -webkit-linear-gradient($angle, $bottom_colour 0%, $top_colour 100%); /* Chrome10+,Safari5.1+ */
+  background: linear-gradient($angle, $bottom_colour 0%, $top_colour 100%); /* W3C */
+}
