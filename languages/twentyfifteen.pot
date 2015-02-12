@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WPCore 1.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tags/twentyfifteen\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/wpcore\n"
 "POT-Creation-Date: 2014-12-14 12:26:59+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +87,7 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#. #-#-#-#-#  twentyfifteen.pot (WPCore 1.0)  #-#-#-#-#
+#. #-#-#-#-#  wpcore.pot (WPCore 1.0)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"
@@ -310,7 +310,7 @@ msgid "WPCore"
 msgstr ""
 
 #. Theme URI of the plugin/theme
-msgid "https://wordpress.org/themes/twentyfifteen"
+msgid "https://wordpress.org/themes/wpcore"
 msgstr ""
 
 #. Description of the plugin/theme

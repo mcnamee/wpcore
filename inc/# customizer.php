@@ -2,15 +2,12 @@
 /**
  * WPCore Customizer functionality
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since WPCore 1.0
+
  */
 
 /**
  * Add postMessage support for site title and description for the Customizer.
  *
- * @since WPCore 1.0
  *
  * @param WP_Customize_Manager $wp_customize Customizer object.
  */
@@ -28,7 +25,7 @@ function wpcore_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'color_scheme', array(
-		'label'    => __( 'Base Color Scheme', 'twentyfifteen' ),
+		'label'    => __( 'Base Color Scheme', 'wpcore' ),
 		'section'  => 'colors',
 		'type'     => 'select',
 		'choices'  => wpcore_get_color_scheme_choices(),
@@ -43,8 +40,8 @@ function wpcore_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'sidebar_textcolor', array(
-		'label'       => __( 'Header and Sidebar Text Color', 'twentyfifteen' ),
-		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'twentyfifteen' ),
+		'label'       => __( 'Header and Sidebar Text Color', 'wpcore' ),
+		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'wpcore' ),
 		'section'     => 'colors',
 	) ) );
 
@@ -59,13 +56,13 @@ function wpcore_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
-		'label'       => __( 'Header and Sidebar Background Color', 'twentyfifteen' ),
-		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'twentyfifteen' ),
+		'label'       => __( 'Header and Sidebar Background Color', 'wpcore' ),
+		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', 'wpcore' ),
 		'section'     => 'colors',
 	) ) );
 
 	// Add an additional description to the header image section.
-	$wp_customize->get_section( 'header_image' )->description = __( 'Applied to the header on small screens and the sidebar on wide screens.', 'twentyfifteen' );
+	$wp_customize->get_section( 'header_image' )->description = __( 'Applied to the header on small screens and the sidebar on wide screens.', 'wpcore' );
 }
 add_action( 'customize_register', 'wpcore_customize_register', 11 );
 
@@ -82,14 +79,13 @@ add_action( 'customize_register', 'wpcore_customize_register', 11 );
  * 5. Sidebar Text and Link Color.
  * 6. Meta Box Background Color.
  *
- * @since WPCore 1.0
  *
  * @return array An associative array of color scheme options.
  */
 function wpcore_get_color_schemes() {
 	return apply_filters( 'wpcore_color_schemes', array(
 		'default' => array(
-			'label'  => __( 'Default', 'twentyfifteen' ),
+			'label'  => __( 'Default', 'wpcore' ),
 			'colors' => array(
 				'#f1f1f1',
 				'#ffffff',
@@ -100,7 +96,7 @@ function wpcore_get_color_schemes() {
 			),
 		),
 		'dark'    => array(
-			'label'  => __( 'Dark', 'twentyfifteen' ),
+			'label'  => __( 'Dark', 'wpcore' ),
 			'colors' => array(
 				'#111111',
 				'#202020',
@@ -111,7 +107,7 @@ function wpcore_get_color_schemes() {
 			),
 		),
 		'yellow'  => array(
-			'label'  => __( 'Yellow', 'twentyfifteen' ),
+			'label'  => __( 'Yellow', 'wpcore' ),
 			'colors' => array(
 				'#f4ca16',
 				'#ffdf00',
@@ -122,7 +118,7 @@ function wpcore_get_color_schemes() {
 			),
 		),
 		'pink'    => array(
-			'label'  => __( 'Pink', 'twentyfifteen' ),
+			'label'  => __( 'Pink', 'wpcore' ),
 			'colors' => array(
 				'#ffe5d1',
 				'#e53b51',
@@ -133,7 +129,7 @@ function wpcore_get_color_schemes() {
 			),
 		),
 		'purple'  => array(
-			'label'  => __( 'Purple', 'twentyfifteen' ),
+			'label'  => __( 'Purple', 'wpcore' ),
 			'colors' => array(
 				'#674970',
 				'#2e2256',
@@ -144,7 +140,7 @@ function wpcore_get_color_schemes() {
 			),
 		),
 		'blue'   => array(
-			'label'  => __( 'Blue', 'twentyfifteen' ),
+			'label'  => __( 'Blue', 'wpcore' ),
 			'colors' => array(
 				'#e9f2f9',
 				'#55c3dc',
@@ -161,7 +157,6 @@ if ( ! function_exists( 'wpcore_get_color_scheme' ) ) :
 /**
  * Get the current WPCore color scheme.
  *
- * @since WPCore 1.0
  *
  * @return array An associative array of either the current or default color scheme hex values.
  */
@@ -181,7 +176,6 @@ if ( ! function_exists( 'wpcore_get_color_scheme_choices' ) ) :
 /**
  * Returns an array of color scheme choices registered for WPCore.
  *
- * @since WPCore 1.0
  *
  * @return array Array of color schemes.
  */
@@ -201,7 +195,6 @@ if ( ! function_exists( 'wpcore_sanitize_color_scheme' ) ) :
 /**
  * Sanitization callback for color schemes.
  *
- * @since WPCore 1.0
  *
  * @param string $value Color scheme name value.
  * @return string Color scheme name.
@@ -220,7 +213,6 @@ endif; // wpcore_sanitize_color_scheme
 /**
  * Enqueues front-end CSS for color scheme.
  *
- * @since WPCore 1.0
  *
  * @see wp_add_inline_style()
  */
@@ -263,7 +255,6 @@ add_action( 'wp_enqueue_scripts', 'wpcore_color_scheme_css' );
  *
  * Passes color scheme data as colorScheme global.
  *
- * @since WPCore 1.0
  */
 function wpcore_customize_control_js() {
 	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20141216', true );
@@ -274,7 +265,6 @@ add_action( 'customize_controls_enqueue_scripts', 'wpcore_customize_control_js' 
 /**
  * Binds JS handlers to make the Customizer preview reload changes asynchronously.
  *
- * @since WPCore 1.0
  */
 function wpcore_customize_preview_js() {
 	wp_enqueue_script( 'wpcore-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20141216', true );
@@ -284,7 +274,6 @@ add_action( 'customize_preview_init', 'wpcore_customize_preview_js' );
 /**
  * Returns CSS for the color schemes.
  *
- * @since WPCore 1.0
  *
  * @param array $colors Color scheme colors.
  * @return string Color scheme CSS.
@@ -686,7 +675,6 @@ CSS;
  * The template generates the css dynamically for instant display in the Customizer
  * preview.
  *
- * @since WPCore 1.0
  */
 function wpcore_color_scheme_css_template() {
 	$colors = array(

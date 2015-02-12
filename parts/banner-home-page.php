@@ -1,3 +1,8 @@
+<?php
+    /**
+     *  Home Page Carousel-Style Banner
+     */
+?>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<!-- Wrapper for slides -->
 	<?php

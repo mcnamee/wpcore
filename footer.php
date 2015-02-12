@@ -1,14 +1,11 @@
 <?php
 /**
+ *
  * The template for displaying the footer
  *
- * Contains the closing of the "site-content" div and all content after.
- *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since WPCore 1.0
  */
 ?>
+    <?php include('parts/testimonials-footer.php'); ?>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<!-- Footer Top -->
@@ -63,7 +60,7 @@
 								 */
 								do_action( 'wpcore_credits' );
 							?>
-							&copy; <?php echo date('Y'); ?> Company Name | <a href="<?php echo esc_url( __( 'http://nbm.com.au/', 'twentyfifteen' ) ); ?>" target="_blank" rel="nofollow"><?php printf( __( 'Web Design by %s', 'twentyfifteen' ), 'NBM' ); ?></a>
+							&copy; <?php echo date('Y'); ?> Company Name | <a href="<?php echo esc_url( __( 'http://nbm.com.au/', 'wpcore' ) ); ?>" target="_blank" rel="nofollow"><?php printf( __( 'Web Design by %s', 'wpcore' ), 'NBM' ); ?></a>
 	                    </div>
 	                </div>
 	            </div>

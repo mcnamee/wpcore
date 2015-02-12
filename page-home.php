@@ -29,6 +29,15 @@ Template Name: Home Page
     </div> <!-- /.container -->
 </div><!-- .section -->
 
+<div class="section border_bottom">
+    <div class="container">
+        <div class="row">
+            <?php include('parts/recent-posts.php'); ?>
+            <?php include('parts/casestudy-random.php'); ?>
+        </div>
+    </div><!-- .container -->
+</div><!-- .section -->
+
 <div class="section">
 	<div class="container">
 		<?php if ( is_active_sidebar( 'home-widgets' ) ) : ?>

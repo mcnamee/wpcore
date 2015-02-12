@@ -20,15 +20,11 @@
  * For more information on hooks, actions, and filters,
  * {@link https://codex.wordpress.org/Plugin_API}
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since WPCore 1.0
  */
 
 /**
  * Set the content width based on the theme's design and stylesheet.
  *
- * @since WPCore 1.0
  */
 if ( ! isset( $content_width ) ) {
 	$content_width = 660;
@@ -49,17 +45,16 @@ if ( ! function_exists( 'wpcore_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  *
- * @since WPCore 1.0
  */
 function wpcore_setup() {
 
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on twentyfifteen, use a find and replace
-	 * to change 'twentyfifteen' to the name of your theme in all the template files
+	 * If you're building a theme based on wpcore, use a find and replace
+	 * to change 'wpcore' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'twentyfifteen', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'wpcore', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -82,9 +77,9 @@ function wpcore_setup() {
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu',      'twentyfifteen' ),
-		'social'  => __( 'Social Links Menu', 'twentyfifteen' ),
-		'footer'  => __( 'Footer Menu',       'twentyfifteen' ),
+		'primary' => __( 'Primary Menu',      'wpcore' ),
+		'social'  => __( 'Social Links Menu', 'wpcore' ),
+		'footer'  => __( 'Footer Menu',       'wpcore' ),
 	) );
 
 	/*
@@ -100,9 +95,9 @@ function wpcore_setup() {
 	 *
 	 * See: https://codex.wordpress.org/Post_Formats
 	 */
-	add_theme_support( 'post-formats', array(
+	/*add_theme_support( 'post-formats', array(
 		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
-	) );
+	) );*/
 
 	/* WPCORE Customizer */
 	/*$color_scheme  = wpcore_get_color_scheme();
@@ -126,16 +121,15 @@ add_action( 'after_setup_theme', 'wpcore_setup' );
 /**
  * Register widget area.
  *
- * @since WPCore 1.0
  *
  * @link https://codex.wordpress.org/Function_Reference/register_sidebar
  */
 
 function wpcore_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Blog Sidebar', 'twentyfifteen' ),
+		'name'          => __( 'Blog Sidebar', 'wpcore' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar.', 'twentyfifteen' ),
+		'description'   => __( 'Add widgets here to appear in your sidebar.', 'wpcore' ),
 		'before_widget' => '<div class="col-md-12"><div class="panel panel-default">',
 		'after_widget'  => '</div></div>',
 		'before_title'  => '<div class="panel-heading">',
@@ -143,9 +137,9 @@ function wpcore_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Page Sidebar', 'twentyfifteen' ),
+		'name'          => __( 'Page Sidebar', 'wpcore' ),
 		'id'            => 'page-sidebar',
-		'description'   => __( 'Add widgets here to appear on the page sidebar.', 'twentyfifteen' ),
+		'description'   => __( 'Add widgets here to appear on the page sidebar.', 'wpcore' ),
 		'before_widget' => '<div class="col-md-12"><div class="panel panel-default">',
 		'after_widget'  => '</div></div>',
 		'before_title'  => '<div class="panel-heading">',
@@ -153,9 +147,9 @@ function wpcore_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Home Widget Area', 'twentyfifteen' ),
+		'name'          => __( 'Home Widget Area', 'wpcore' ),
 		'id'            => 'home-widgets',
-		'description'   => __( 'Add widgets here to appear on your Homepage.', 'twentyfifteen' ),
+		'description'   => __( 'Add widgets here to appear on your Homepage.', 'wpcore' ),
 		'before_widget' => '<div class="col-md-4"><div class="panel panel-default">',
 		'after_widget'  => '</div></div>',
 		'before_title'  => '<div class="panel-heading">',
@@ -168,7 +162,6 @@ add_action( 'widgets_init', 'wpcore_widgets_init' );
 /**
  * Enqueue scripts and styles.
  *
- * @since WPCore 1.0
  */
 function wpcore_scripts() {
 
@@ -190,7 +183,6 @@ add_action( 'wp_enqueue_scripts', 'wpcore_scripts' );
 /**
  * Display descriptions in main navigation.
  *
- * @since WPCore 1.0
  *
  * @param string  $item_output The menu item output.
  * @param WP_Post $item        Menu item object.
@@ -210,7 +202,6 @@ add_filter( 'walker_nav_menu_start_el', 'wpcore_nav_description', 10, 4 );
 /**
  * Add a `screen-reader-text` class to the search form's submit button.
  *
- * @since WPCore 1.0
  *
  * @param string $html Search form HTML.
  * @return string Modified search form HTML.
@@ -223,14 +214,12 @@ add_filter( 'get_search_form', 'wpcore_search_form_modify' );
 /**
  * Custom template tags for this theme.
  *
- * @since WPCore 1.0
  */
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Customizer additions.
  *
- * @since WPCore 1.0
  */
 // require get_template_directory() . '/inc/customizer.php';
 
@@ -239,7 +228,7 @@ require get_template_directory() . '/inc/template-tags.php';
  *
  * @since Core 2
  */
-require_once get_template_directory() . '/wp_bootstrap_navwalker.php';
+require_once get_template_directory() . '/inc/wp_bootstrap_navwalker.php';
 
 /**
  * Banners Module
@@ -248,9 +237,45 @@ require_once get_template_directory() . '/wp_bootstrap_navwalker.php';
 require_once get_template_directory() . '/inc/banners-custom-post-type.php';
 
 /**
+ * Testimonials Module
+ *
+ */
+require_once get_template_directory() . '/inc/testimonials-custom-post-type.php';
+
+/**
+ * Banners Module
+ *
+ */
+require_once get_template_directory() . '/inc/banners-custom-post-type.php';
+
+/**
+ * Case Studies Module
+ *
+ */
+require_once get_template_directory() . '/inc/casestudies-custom-post-type.php';
+
+/**
  * ACF Fields - Error Message
  *
  */
 function acf_admin_notice() {?>
     <div class="error"><p><?php _e( 'Error! Please install the "Advanced Custom Fields" &amp; the "ACF: Repeater Field" plugins.', 'my-text-domain' ); ?></p></div>
 <?php }
+
+/**
+ * Trim Summary  (Cut string to closest word under max length)
+ *
+ */
+if (!function_exists('TrimSummary')) {
+    function TrimSummary($summary, $max_length = 100) {
+        $summary = preg_replace('/[\n\r]/i', ' ', strip_tags($summary)); // Strip Tags and Newlines
+        $summary = preg_replace('/\s{2,}/i', ' ', trim($summary)); // Remove Double-Spaces
+        if (strlen($summary) < $max_length) return $summary;
+
+        // Summary Oversize - Trim it
+        $cut_length = strrpos(substr($summary, 0, $max_length), ' ');
+        $summary = substr($summary, 0, $cut_length);
+        $summary .= (substr($summary, -1) == '.') ? '..' : '...'; // Add Trailing Dots
+        return $summary;
+    }
+}

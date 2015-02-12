@@ -6,12 +6,16 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description
-Wordpress theme on top of Bootstrap and SASS, based on the TwentyFifteen Wordpress Theme.
+Wordpress theme on top of Bootstrap and SASS, based on the wpcore Wordpress Theme.
 
 - Responsive Layout
 - Social Links
 - Post Formats
 - Banners custom post type
+
+## Requirements
+
+- Install the Advanced Custom Fields plugin - https://wordpress.org/plugins/advanced-custom-fields/
 
 ## Frequently Asked Questions
 

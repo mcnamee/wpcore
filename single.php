@@ -2,9 +2,7 @@
 /**
  * The template for displaying all single posts and attachments
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since WPCore 1.0
+
  */
 
 get_header(); ?>

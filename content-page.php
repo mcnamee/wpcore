@@ -2,9 +2,7 @@
 /**
  * The template used for displaying page content
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since WPCore 1.0
+
  */
 ?>
 
@@ -22,6 +20,6 @@
 		<?php the_content(); ?>
 	</div><!-- .entry-content -->
 
-	<?php edit_post_link( __( 'Edit Page', 'twentyfifteen' ), '<span class="btn btn-default">', '</span>' ); ?>
+	<?php edit_post_link( __( 'Edit Page', 'wpcore' ), '<span class="btn btn-default">', '</span>' ); ?>
 
 </article><!-- #post-## -->

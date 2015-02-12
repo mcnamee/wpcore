@@ -6,9 +6,6 @@
  * since this theme is not meant to be backward compatible beyond that and
  * relies on many newer functions and markup changes introduced in 4.1.
  *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since WPCore 1.0
  */
 
 /**
@@ -16,7 +13,6 @@
  *
  * Switches to the default theme.
  *
- * @since WPCore 1.0
  */
 function wpcore_switch_theme() {
 	switch_theme( WP_DEFAULT_THEME, WP_DEFAULT_THEME );
@@ -31,20 +27,18 @@ add_action( 'after_switch_theme', 'wpcore_switch_theme' );
  * Prints an update nag after an unsuccessful attempt to switch to
  * WPCore on WordPress versions prior to 4.1.
  *
- * @since WPCore 1.0
  */
 function wpcore_upgrade_notice() {
-	$message = sprintf( __( 'WPCore requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'twentyfifteen' ), $GLOBALS['wp_version'] );
+	$message = sprintf( __( 'WPCore requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'wpcore' ), $GLOBALS['wp_version'] );
 	printf( '<div class="error"><p>%s</p></div>', $message );
 }
 
 /**
  * Prevent the Customizer from being loaded on WordPress versions prior to 4.1.
  *
- * @since WPCore 1.0
  */
 function wpcore_customize() {
-	wp_die( sprintf( __( 'WPCore requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'twentyfifteen' ), $GLOBALS['wp_version'] ), '', array(
+	wp_die( sprintf( __( 'WPCore requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'wpcore' ), $GLOBALS['wp_version'] ), '', array(
 		'back_link' => true,
 	) );
 }
@@ -53,11 +47,10 @@ add_action( 'load-customize.php', 'wpcore_customize' );
 /**
  * Prevent the Theme Preview from being loaded on WordPress versions prior to 4.1.
  *
- * @since WPCore 1.0
  */
 function wpcore_preview() {
 	if ( isset( $_GET['preview'] ) ) {
-		wp_die( sprintf( __( 'WPCore requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'twentyfifteen' ), $GLOBALS['wp_version'] ) );
+		wp_die( sprintf( __( 'WPCore requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again.', 'wpcore' ), $GLOBALS['wp_version'] ) );
 	}
 }
 add_action( 'template_redirect', 'wpcore_preview' );
