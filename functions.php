@@ -180,6 +180,7 @@ function wpcore_scripts() {
 
 	// Load the Bootstrap Files.
 	wp_enqueue_style( 'bootstrap-main', get_template_directory_uri() . '/css/main.min.css', array(), 'v3.3.1' );
+	
 	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ), 'v3.3.1' );
 	wp_enqueue_script( 'plugins-js', get_template_directory_uri() . '/js/plugins.js', array( 'jquery' ), 'v1', true );
 	wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array( 'jquery', 'plugins-js' ), 'v1', true );
@@ -239,3 +240,17 @@ require get_template_directory() . '/inc/template-tags.php';
  * @since Core 2
  */
 require_once get_template_directory() . '/wp_bootstrap_navwalker.php';
+
+/**
+ * Banners Module
+ *
+ */
+require_once get_template_directory() . '/inc/banners-custom-post-type.php';
+
+/**
+ * ACF Fields - Error Message
+ *
+ */
+function acf_admin_notice() {?>
+    <div class="error"><p><?php _e( 'Error! Please install the "Advanced Custom Fields" &amp; the "ACF: Repeater Field" plugins.', 'my-text-domain' ); ?></p></div>
+<?php }
