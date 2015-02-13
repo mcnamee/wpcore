@@ -27,7 +27,9 @@ get_header(); ?>
 		</div> <!-- /.col -->
 
 		<div id="sidebar" class="col-md-4 sidebar">
-            <div class="row">
+            <div class="row section">
+                <?php the_sub_pages(); ?>
+
 			    <?php dynamic_sidebar('Page Sidebar'); ?>
             </div> <!-- /.row -->
 		</div> <!-- /.col -->

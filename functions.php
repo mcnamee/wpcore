@@ -7,7 +7,7 @@
 require get_template_directory() . '/inc/theme-setup.php';
 
 /* Customizer additions. */
-// require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/customizer.php';
 
 /* Register widget areas. */
 require get_template_directory() . '/inc/register-widgets.php';
@@ -20,6 +20,12 @@ require get_template_directory() . '/inc/template-tags.php';
 
 /* Enqueue scripts and styles. */
 require get_template_directory() . '/inc/enqueue-scripts.php';
+
+/* Shortcodes */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/* Sidebar Sub Page Menu */
+require get_template_directory() . '/inc/sub-page-menu.php';
 
 
 /* =========== Modules =========== */

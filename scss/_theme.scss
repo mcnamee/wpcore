@@ -1,3 +1,13 @@
+// Header
+
+.navbar-brand {
+  height: auto;
+
+  img {
+    max-height: 100px;
+  }
+}
+
 // Helpful Bootstrap Overrides and Addons.
 
 .row.no-gutters {
