@@ -52,11 +52,7 @@ get_header(); ?>
 
 		</div> <!-- /.col -->
 
-		<div id="sidebar" class="col-md-4 sidebar">
-            <div class="row sidebar">
-			    <?php dynamic_sidebar( 'sidebar-1' ); ?>
-            </div> <!-- /.row -->
-		</div> <!-- /.col -->
+        <?php require 'parts/sidebar.php'; ?>
 
 	</main>
 </div> <!-- /.container -->

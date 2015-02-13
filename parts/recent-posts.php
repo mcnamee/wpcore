@@ -8,7 +8,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             Blog
-            <small><a href="#">View All &gt;&gt;</a></small>
+            <small><a href="<?php echo get_permalink(get_option("page_for_posts")); ?>">View All &gt;&gt;</a></small>
         </div>
         <div class="list-group striped list-group-flush">
 
