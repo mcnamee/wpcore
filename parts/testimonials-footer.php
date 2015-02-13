@@ -18,7 +18,7 @@
 
                     <div class="testimonial_content col-ms-8 col-sm-9 col-md-10">
                         <blockquote>
-                            <p><?php echo TrimSummary( get_the_content(), 200 ); ?></p>
+                            <p><?php echo wp_trim_words( get_the_content(), 20 ); ?></p>
                             <small><?php the_title(); ?></small>
                         </blockquote>
                     </div> <!-- /.testimonial_content -->

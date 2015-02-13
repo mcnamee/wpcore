@@ -29,7 +29,7 @@
                                 <div class="col-xs-10">
                                     <div class="blog_listing">
                                         <h5 class="font-display"><a href="<?php the_permalink(); ?>" class="inherit-color"><?php the_title(); ?></a></h5>
-                                        <p><?php echo TrimSummary( get_the_content(), 200 ); ?></p>
+                                        <p><?php echo wp_trim_words( get_the_content(), 20 ); ?></p>
                                         <a href="<?php the_permalink(); ?>">View Post &gt;&gt;</a>
                                     </div> <!-- /.blog_listing -->
                                 </div> <!-- /.col -->

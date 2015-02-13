@@ -1,10 +1,6 @@
 <?php
 /**
  * The template for displaying the header
- *
- * Displays all of the head element and everything up until the "site-content" div.
- *
-
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -22,7 +18,6 @@
 
 <body <?php body_class(); ?>>
 
-<!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-static-top">
 	<div class="navbar-header">
 		<div class="container">
