@@ -8,7 +8,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Case Studies
-            <small><a href="#">View All &gt;&gt;</a></small>
+            <small><a href="/casestudies">View All &gt;&gt;</a></small>
         </div>
         <div class="panel-body container-fluid">
 

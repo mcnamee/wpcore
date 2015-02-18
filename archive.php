@@ -22,24 +22,12 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
+                <h1><?= str_replace( array('Archives: ', "Category: ", "Month: "), '', get_the_archive_title()) ?></h1>
 			</header><!-- .entry_header -->
 
 			<?php
-			// Start the Loop.
 			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
 				get_template_part( 'content', get_post_format() );
-
-			// End the loop.
 			endwhile;
 		
 			/* Include Pager */
@@ -53,11 +41,7 @@ get_header(); ?>
 		?>
         </div> <!-- /.col -->
 
-        <div id="sidebar" class="col-md-4 sidebar">
-            <div class="row">
-                <?php dynamic_sidebar( 'sidebar-1' ); ?>
-            </div> <!-- ./row -->
-        </div> <!-- /.col -->
+        <?php require 'parts/sidebar.php'; ?>
 
     </main>
 </div> <!-- /.container -->

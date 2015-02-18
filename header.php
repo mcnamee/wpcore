@@ -32,6 +32,7 @@
 				<span class="icon-bar"></span>
 			</button>
 
+            <div class="col-md-6">
             <?php if ( get_theme_mod( 'wpcore_header_logo' ) ) : ?>
                 <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
                     <img src="<?php echo esc_attr(get_theme_mod( 'wpcore_header_logo' )); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" class="img-responsive">
@@ -39,7 +40,13 @@
             <?php else : ?>
                 <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
             <?php endif; ?>
+            </div> <!-- /.col -->
 
+            <?php if ( get_theme_mod( 'wpcore_header_byline' ) ) : ?>
+            <div class="col-md-6 text-right">
+                <?php echo esc_attr(get_theme_mod( 'wpcore_header_byline' )); ?>
+            </div> <!-- /.col -->
+            <?php endif; ?>
 		</div><!-- .container -->
 	</div><!-- .navbar-header -->
 

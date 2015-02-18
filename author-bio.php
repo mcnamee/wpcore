@@ -1,8 +1,6 @@
 <?php
 /**
  * The template for displaying Author bios
- *
-
  */
 ?>
 
@@ -12,9 +10,6 @@
 		<?php
 		/**
 		 * Filter the author bio avatar size.
-		 *
-		 * @since WPCore 1.0
-		 *
 		 * @param int $size The avatar height and width size in pixels.
 		 */
 		$author_bio_avatar_size = apply_filters( 'wpcore_author_bio_avatar_size', 56 );
