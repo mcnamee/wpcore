@@ -60,7 +60,7 @@
 								 */
 								do_action( 'wpcore_credits' );
 							?>
-							&copy; <?php echo date('Y'); ?> Company Name | <a href="<?php echo esc_url( __( 'http://nbm.com.au/', 'wpcore' ) ); ?>" target="_blank" rel="nofollow"><?php printf( __( 'Web Design by %s', 'wpcore' ), 'NBM' ); ?></a>
+							&copy; <?php echo date('Y'); ?>  <?=get_bloginfo( 'name' ); ?> | <a href="<?php echo esc_url( __( 'http://nbm.com.au/', 'wpcore' ) ); ?>" target="_blank" rel="nofollow"><?php printf( __( 'Web Design by %s', 'wpcore' ), 'NBM' ); ?></a>
 	                    </div>
 	                </div>
 	            </div>

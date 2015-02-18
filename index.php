@@ -20,6 +20,11 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
+            <?php
+                $page_id = get_option( 'page_for_posts' );
+                echo get_the_post_thumbnail( $page_id, 'full', array('class' => 'img-responsive') );
+            ?>
+
 			<?php if ( is_home() && ! is_front_page() ) : ?>
 				<header class="page-header">
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>

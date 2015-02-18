@@ -25,6 +25,7 @@
 				'hierarchical'   => true,
 				'menu_position'  => 4,
 				'capability_type'=> 'page',
+                'has_archive'    => true,
 				'supports'       => array('title', 'excerpt', 'editor', 'thumbnail', 'page-attributes')
 			)
 		);

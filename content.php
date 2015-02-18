@@ -4,7 +4,6 @@
  *
  * Used for both single and index/archive/search.
  *
-
  */
 ?>
 

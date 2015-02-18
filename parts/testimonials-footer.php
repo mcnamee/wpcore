@@ -4,7 +4,11 @@
      *  - Shows 1 post at random
      */
 ?>
-<div class="footer_testimonial section border_top">
+<?php if ( get_theme_mod( 'wpcore_testimonial_image' ) ) : ?>
+<div class="footer_testimonial section border_top" style="background-image: url(<?=esc_attr(get_theme_mod( 'wpcore_testimonial_image' ));?>);">
+    <?php else : ?>
+    <div class="footer_testimonial section border_top">
+        <?php endif; ?>
     <div class="container">
         <div class="row">
         <?php

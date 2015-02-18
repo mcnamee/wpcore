@@ -92,6 +92,8 @@
 .footer_testimonial {
 	background-color: $footer-testimonial-background-color;
 	padding: $footer-testimonial-padding 0px;
+    background-size: cover;
+  	background-position: center center;
 
 	@media (max-width: $screen-xs-max) {
 		padding: ($footer-testimonial-padding / 2) 0px;

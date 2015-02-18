@@ -29,5 +29,20 @@ function wpcore_customize_register( $wp_customize ) {
         'section'  => 'wpcore_header_logo_section',
         'settings' => 'wpcore_header_logo'
     ) ) );
+
+    // Add an additional description to the header image section.
+    $wp_customize->add_section( 'wpcore_testimonial_section' , array(
+        'title'       => __( 'Testimonial Background Image', 'wpcore' ),
+        'priority'    => 30,
+        'description' => 'Upload an image to replace the testimonial background image',
+   ) );
+
+    $wp_customize->add_setting( 'wpcore_testimonial_image' );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'wpcore_testimonial_image', array(
+        'label'    => __( 'Background Image', 'wpcore' ),
+        'section'  => 'wpcore_testimonial_section',
+        'settings' => 'wpcore_testimonial_image',
+   ) ) );
 }
 add_action( 'customize_register', 'wpcore_customize_register', 11 );
