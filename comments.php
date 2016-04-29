@@ -1,10 +1,13 @@
 <?php
 /**
- * The template for displaying comments
+ * The template for displaying comments.
  *
- * The area of the page that contains both current comments
+ * This is the template that displays the area of the page that contains both the current comments
  * and the comment form.
  *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package wpcore
  */
 
 /*
@@ -19,61 +22,64 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php if ( have_comments() ) : ?>
+	<?php
+	// You can start editing here -- including this comment!
+	if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
-				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'wpcore' ),
-					number_format_i18n( get_comments_number() ), get_the_title() );
+				printf( // WPCS: XSS OK.
+					esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'wpcore' ) ),
+					number_format_i18n( get_comments_number() ),
+					'<span>' . get_the_title() . '</span>'
+				);
 			?>
 		</h2>
 
-		<?php wpcore_comment_nav(); ?>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'wpcore' ); ?></h2>
+			<div class="nav-links">
+
+				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'wpcore' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'wpcore' ) ); ?></div>
+
+			</div><!-- .nav-links -->
+		</nav><!-- #comment-nav-above -->
+		<?php endif; // Check for comment navigation. ?>
 
 		<ol class="comment-list">
 			<?php
 				wp_list_comments( array(
-					'style'       => 'ol',
-					'short_ping'  => true,
-					'avatar_size' => 56,
+					'style'      => 'ol',
+					'short_ping' => true,
 				) );
 			?>
 		</ol><!-- .comment-list -->
 
-		<?php wpcore_comment_nav(); ?>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'wpcore' ); ?></h2>
+			<div class="nav-links">
 
-	<?php endif; // have_comments() ?>
+				<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'wpcore' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'wpcore' ) ); ?></div>
 
+			</div><!-- .nav-links -->
+		</nav><!-- #comment-nav-below -->
+		<?php
+		endif; // Check for comment navigation.
+
+	endif; // Check for have_comments().
+
+
+	// If comments are closed and there are comments, let's leave a little note, shall we?
+	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+
+		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'wpcore' ); ?></p>
 	<?php
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
-	?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'wpcore' ); ?></p>
-	<?php endif; ?>
+	endif;
 
-	<?php 
-		$commenter = wp_get_current_commenter();
-		$req = get_option( 'require_name_email' );
-		$aria_req = ( $req ? " aria-required='true'" : '' );
-
-		$fields = array(
-				'author' => '<div class="form-group"><label for="author">Name<span>(Required)</span></label><input type="text" class="form-control" id="author" name="author" ' . $aria_req . ' value="' .
-	        esc_attr( $commenter['comment_author'] ) . '" tabindex="1" /></div>',
-				'email' => '<div class="form-group"><label for="email">Email<span>(Required)</span></label><input type="text" class="form-control" id="email" name="email" ' . $aria_req . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" tabindex="2" /></div>',
-				'URL' => '<div class="form-group"><label for="url">Website</label><input type="text" class="form-control" id="url" name="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" tabindex="3" /></div>'
-		);
-
-		$comm = "Leave a Comment";
-
-		$args = array(
-			'fields' => apply_filters( 'comment_form_default_fields', $fields),
-			'title_reply' => '<h5>'. $comm .'</h5>',
-			'cancel_reply_link' => '',
-			'comment_field' => '<div class="form-group"><label for="comment">Your Comment</label><textarea id="comment" name="comment" ' . $aria_req . ' class="form-control" tabindex="4" rows="0" cols="0"></textarea></div>',
-			'label_submit' => 'Leave a Comment',
-			'comment_notes_before' => '',
-			'comment_notes_after' => '',
-		);
-		comment_form($args); 
+	comment_form();
 	?>
 
-</div><!-- .comments-area -->
+</div><!-- #comments -->

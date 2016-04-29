@@ -1,127 +1,87 @@
 <?php
 /**
- * Custom template tags for WPCore
+ * Custom template tags for this theme.
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
-
+ * @package wpcore
  */
 
-if ( ! function_exists( 'wpcore_comment_nav' ) ) :
+if ( ! function_exists( 'wpcore_posted_on' ) ) :
 /**
- * Display navigation to next/previous comments when applicable.
- *
+ * Prints HTML with meta information for the current post-date/time and author.
  */
-function wpcore_comment_nav() {
-	// Are there comments to navigate through?
-	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
-	?>
-	<nav class="navigation comment-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'wpcore' ); ?></h2>
-		<div class="nav-links">
-			<?php
-				if ( $prev_link = get_previous_comments_link( __( 'Older Comments', 'wpcore' ) ) ) :
-					printf( '<div class="nav-previous">%s</div>', $prev_link );
-				endif;
+function wpcore_posted_on() {
+	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+	}
 
-				if ( $next_link = get_next_comments_link( __( 'Newer Comments', 'wpcore' ) ) ) :
-					printf( '<div class="nav-next">%s</div>', $next_link );
-				endif;
-			?>
-		</div><!-- .nav-links -->
-	</nav><!-- .comment-navigation -->
-	<?php
-	endif;
+	$time_string = sprintf( $time_string,
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( get_the_date() ),
+		esc_attr( get_the_modified_date( 'c' ) ),
+		esc_html( get_the_modified_date() )
+	);
+
+	$posted_on = sprintf(
+		esc_html_x( 'Posted on %s', 'post date', 'wpcore' ),
+		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+	);
+
+	$byline = sprintf(
+		esc_html_x( 'by %s', 'post author', 'wpcore' ),
+		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+	);
+
+	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+
 }
 endif;
 
-if ( ! function_exists( 'wpcore_entry_meta' ) ) :
+if ( ! function_exists( 'wpcore_entry_footer' ) ) :
 /**
- * Prints HTML with meta information for the categories, tags.
- *
+ * Prints HTML with meta information for the categories, tags and comments.
  */
-function wpcore_entry_meta() {
-	if ( is_sticky() && is_home() && ! is_paged() ) {
-		printf( '<li class="sticky-post">%s</li>', __( 'Featured', 'wpcore' ) );
-	}
-
-	$format = get_post_format();
-	if ( current_theme_supports( 'post-formats', $format ) ) {
-		printf( '<li>%1$s<a href="%2$s">%3$s</a></li>',
-			sprintf( '<span class="screen-reader-text">%s </span>', _x( 'Format', 'Used before post format.', 'wpcore' ) ),
-			esc_url( get_post_format_link( $format ) ),
-			get_post_format_string( $format )
-		);
-	}
-
-	if ( in_array( get_post_type(), array( 'post', 'attachment' ) ) ) {
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-
-		$time_string = sprintf( $time_string,
-			esc_attr( get_the_date( 'c' ) ),
-			get_the_date(),
-			esc_attr( get_the_modified_date( 'c' ) ),
-			get_the_modified_date()
-		);
-
-		printf( '<li><span class="screen-reader-text">%1$s </span><a href="%2$s" rel="bookmark">%3$s</a></li>',
-			_x( 'Posted on', 'Used before publish date.', 'wpcore' ),
-			esc_url( get_permalink() ),
-			$time_string
-		);
-	}
-
-	if ( 'post' == get_post_type() ) {
-		if ( is_singular() || is_multi_author() ) {
-			printf( '<li><span class="author vcard"><span class="screen-reader-text">%1$s </span><a class="url fn n" href="%2$s">%3$s</a></span></li>',
-				_x( 'Author', 'Used before post author name.', 'wpcore' ),
-				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-				get_the_author()
-			);
-		}
-
-		$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'wpcore' ) );
+function wpcore_entry_footer() {
+	// Hide category and tag text for pages.
+	if ( 'post' === get_post_type() ) {
+		/* translators: used between list items, there is a space after the comma */
+		$categories_list = get_the_category_list( esc_html__( ', ', 'wpcore' ) );
 		if ( $categories_list && wpcore_categorized_blog() ) {
-			printf( '<li><span class="screen-reader-text">%1$s </span>%2$s</li>',
-				_x( 'Categories', 'Used before category names.', 'wpcore' ),
-				$categories_list
-			);
+			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'wpcore' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 		}
 
-		$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'wpcore' ) );
+		/* translators: used between list items, there is a space after the comma */
+		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'wpcore' ) );
 		if ( $tags_list ) {
-			printf( '<li><span class="screen-reader-text">%1$s </span>%2$s</li>',
-				_x( 'Tags', 'Used before tag names.', 'wpcore' ),
-				$tags_list
-			);
+			printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'wpcore' ) . '</span>', $tags_list ); // WPCS: XSS OK.
 		}
-	}
-
-	if ( is_attachment() && wp_attachment_is_image() ) {
-		// Retrieve attachment metadata.
-		$metadata = wp_get_attachment_metadata();
-
-		printf( '<li><span class="screen-reader-text">%1$s </span><a href="%2$s">%3$s &times; %4$s</a></li>',
-			_x( 'Full size', 'Used before full size attachment link.', 'wpcore' ),
-			esc_url( wp_get_attachment_url() ),
-			$metadata['width'],
-			$metadata['height']
-		);
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<li>';
-		comments_popup_link( __( 'Leave a comment', 'wpcore' ), __( '1 Comment', 'wpcore' ), __( '% Comments', 'wpcore' ) );
-		echo '</li>';
+		echo '<span class="comments-link">';
+		/* translators: %s: post title */
+		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'wpcore' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+		echo '</span>';
 	}
+
+	edit_post_link(
+		sprintf(
+			/* translators: %s: Name of current post */
+			esc_html__( 'Edit %s', 'wpcore' ),
+			the_title( '<span class="screen-reader-text">"', '"</span>', false )
+		),
+		'<span class="edit-link">',
+		'</span>'
+	);
 }
 endif;
 
 /**
- * Determine whether blog/site has more than one category.
+ * Returns true if a blog has more than 1 category.
  *
- *
- * @return bool True of there is more than one category, false otherwise.
+ * @return bool
  */
 function wpcore_categorized_blog() {
 	if ( false === ( $all_the_cool_cats = get_transient( 'wpcore_categories' ) ) ) {
@@ -129,7 +89,6 @@ function wpcore_categorized_blog() {
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
 			'hide_empty' => 1,
-
 			// We only need to know if there is more than one category.
 			'number'     => 2,
 		) );
@@ -150,80 +109,14 @@ function wpcore_categorized_blog() {
 }
 
 /**
- * Flush out the transients used in {@see wpcore_categorized_blog()}.
- *
+ * Flush out the transients used in wpcore_categorized_blog.
  */
 function wpcore_category_transient_flusher() {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
 	// Like, beat it. Dig?
 	delete_transient( 'wpcore_categories' );
 }
 add_action( 'edit_category', 'wpcore_category_transient_flusher' );
 add_action( 'save_post',     'wpcore_category_transient_flusher' );
-
-if ( ! function_exists( 'wpcore_post_thumbnail' ) ) :
-/**
- * Display an optional post thumbnail.
- *
- * Wraps the post thumbnail in an anchor element on index views, or a div
- * element when on single views.
- *
- */
-function wpcore_post_thumbnail() {
-	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
-		return;
-	}
-
-	if ( is_singular() ) :
-	?>
-
-	<div class="post-thumbnail">
-		<?php the_post_thumbnail(); ?>
-	</div><!-- .post-thumbnail -->
-
-	<?php else : ?>
-
-	<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
-		<?php
-			the_post_thumbnail( 'post-thumbnail', array( 'alt' => get_the_title(), 'class' => 'responsive-img' ) );
-		?>
-	</a>
-
-	<?php endif; // End is_singular()
-}
-endif;
-
-if ( ! function_exists( 'wpcore_get_link_url' ) ) :
-/**
- * Return the post URL.
- *
- * Falls back to the post permalink if no URL is found in the post.
- *
- *
- * @see get_url_in_content()
- *
- * @return string The Link format URL.
- */
-function wpcore_get_link_url() {
-	$has_url = get_url_in_content( get_the_content() );
-
-	return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );
-}
-endif;
-
-if ( ! function_exists( 'wpcore_excerpt_more' ) && ! is_admin() ) :
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with ... and a 'Continue reading' link.
- *
- *
- * @return string 'Continue reading' link prepended with an ellipsis.
- */
-function wpcore_excerpt_more( $more ) {
-	$link = sprintf( '<a href="%1$s" class="more-link">%2$s</a>',
-		esc_url( get_permalink( get_the_ID() ) ),
-		/* translators: %s: Name of current post */
-		sprintf( __( 'Continue reading %s', 'wpcore' ), '<span class="screen-reader-text">' . get_the_title( get_the_ID() ) . '</span>' )
-		);
-	return ' &hellip; ' . $link;
-}
-add_filter( 'excerpt_more', 'wpcore_excerpt_more' );
-endif;

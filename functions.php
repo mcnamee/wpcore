@@ -1,46 +1,43 @@
 <?php
-    /**
-     * WPCore functions and definitions
-     */
-
-/* Theme Setup */
-require get_template_directory() . '/inc/theme-setup.php';
-
-/* Customizer additions. */
-require get_template_directory() . '/inc/customizer.php';
-
-/* Register widget areas. */
-require get_template_directory() . '/inc/register-widgets.php';
-
-/* Accessibility Stuff */
-require get_template_directory() . '/inc/accessibility.php';
-
-/* Custom template tags for this theme. */
-require get_template_directory() . '/inc/template-tags.php';
-
-/* Enqueue scripts and styles. */
-require get_template_directory() . '/inc/enqueue-scripts.php';
-
-/* Shortcodes */
-require get_template_directory() . '/inc/shortcodes.php';
-
-/* Sidebar Sub Page Menu */
-require get_template_directory() . '/inc/sub-page-menu.php';
-
-
-/* =========== Modules =========== */
-/* Banners Module */
-require_once get_template_directory() . '/inc/banners-custom-post-type.php';
-
-/* Testimonials Module */
-require_once get_template_directory() . '/inc/testimonials-custom-post-type.php';
-
-/* Case Studies Module */
-require_once get_template_directory() . '/inc/casestudies-custom-post-type.php';
+/**
+ * wpcore functions and definitions.
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package wpcore
+ */
 
 /**
- * ACF Fields - Error Message
+ * Theme Setup.
  */
-function acf_admin_notice() {?>
-    <div class="error"><p><?php _e( 'Error! Please install the "Advanced Custom Fields" &amp; the "ACF: Repeater Field" plugins.', 'my-text-domain' ); ?></p></div>
-<?php }
+require get_template_directory() . '/inc/theme-setup.php';
+
+/**
+ * Register shortcodes.
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/**
+ * Register widgets.
+ */
+require get_template_directory() . '/inc/widgets.php';
+
+/**
+ * Enqueue scripts and styles.
+ */
+require get_template_directory() . '/inc/enqueue.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';

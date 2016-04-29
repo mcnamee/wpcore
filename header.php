@@ -1,69 +1,57 @@
 <?php
 /**
- * The template for displaying the header
+ * The header for our theme.
+ *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package wpcore
  */
+
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-	<?php wp_head(); ?>
+<!-- ICONS -->
+<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/ms-tile-icon.png" />
+<meta name="msapplication-TileColor" content="#8cc641" />
+<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico" />
+<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/apple-touch-icon.png" />
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<!-- WP_HEAD -->
+<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'wpcore' ); ?></a>
 
-<nav class="navbar navbar-inverse navbar-static-top">
-	<div class="navbar-header">
-		<div class="container">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<?php
+			if ( is_front_page() && is_home() ) : ?>
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			<?php else : ?>
+				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+			<?php
+			endif;
 
-            <div class="col-md-6">
-            <?php if ( get_theme_mod( 'wpcore_header_logo' ) ) : ?>
-                <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <img src="<?php echo esc_attr(get_theme_mod( 'wpcore_header_logo' )); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" class="img-responsive">
-                </a>
-            <?php else : ?>
-                <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-            <?php endif; ?>
-            </div> <!-- /.col -->
+			$description = get_bloginfo( 'description', 'display' );
+			if ( $description || is_customize_preview() ) : ?>
+				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+			<?php
+			endif; ?>
+		</div><!-- .site-branding -->
 
-            <?php if ( get_theme_mod( 'wpcore_header_byline' ) ) : ?>
-            <div class="col-md-6 text-right">
-                <?php echo esc_attr(get_theme_mod( 'wpcore_header_byline' )); ?>
-            </div> <!-- /.col -->
-            <?php endif; ?>
-		</div><!-- .container -->
-	</div><!-- .navbar-header -->
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'wpcore' ); ?></button>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+		</nav><!-- #site-navigation -->
+	</header><!-- #masthead -->
 
-	<?php if ( has_nav_menu( 'primary' ) ) : ?>
-		<div id="navbar" class="navbar-collapse collapse">
-			<div class="container">
-				<?php
-					// Primary navigation menu.
-					wp_nav_menu( array(
-						'menu_class'     => 'nav navbar-nav',
-						'theme_location' => 'primary',
-						'walker' => new wp_bootstrap_navwalker()
-					) );
-				?>
-			</div><!-- .container -->
-		</div><!-- #navbar -->
-	<?php endif; ?>
-</nav>
-
-<div id="page" class="hfeed site">
+	<div id="content" class="site-content">

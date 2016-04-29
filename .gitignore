@@ -1,3 +1,20 @@
-.idea/
+# Ignore files
+.htaccess
+.DS_Store
+._.DS_Store
+
+# Ignore log files
+error_log_local
+error_log_dev
+error_log
 *.log
-._*
+
+# Ignore all files in the directories:
+build/
+.idea/
+idea/
+cache/
+node_modules/
+
+# Don't ignore
+!.gitkeep
