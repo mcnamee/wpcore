@@ -10,34 +10,34 @@
 /**
  * Theme Setup.
  */
-require get_template_directory() . '/inc/theme-setup.php';
+require get_template_directory() . '/theme-setup/theme-setup.php';
 
 /**
  * Register shortcodes.
  */
-require get_template_directory() . '/inc/shortcodes.php';
+require get_template_directory() . '/theme-setup/shortcodes.php';
 
 /**
  * Register widgets.
  */
-require get_template_directory() . '/inc/widgets.php';
+require get_template_directory() . '/theme-setup/widgets.php';
 
 /**
  * Enqueue scripts and styles.
  */
-require get_template_directory() . '/inc/enqueue.php';
+require get_template_directory() . '/theme-setup/enqueue.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/theme-setup/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+require get_template_directory() . '/theme-setup/extras.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/theme-setup/customizer.php';

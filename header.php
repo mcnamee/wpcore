@@ -28,30 +28,26 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'wpcore' ); ?></a>
+<div class="offCanvas" data-menu="offcanv_menu">
+	<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'offCanvas_menu' ) ); ?>
+</div> <!-- /.offCanvas -->
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<?php
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
+<div class="onCanvas">
+	<div id="page" class="site">
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-branding grid_12 grid_12_s grid_12_xs">
 				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
+			</div><!-- .site-branding -->
 
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
+      <div class="visible_phone grid_12 grid_12_s grid_12_xs">
+				<a href="#" id="offcanv_menu"></a>
+			</div> <!-- /.grid -->
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'wpcore' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+			<div class="clear"></div>
 
-	<div id="content" class="site-content">
+			<nav id="site-navigation" class="main-navigation hidden_phone" role="navigation">
+				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+			</nav><!-- #site-navigation -->
+		</header><!-- #masthead -->
+
+		<div id="content" class="site-content">

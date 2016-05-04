@@ -172,7 +172,7 @@
     cssArrows: false,
     animation: {opacity:'show'}
   }
-  var mainNav = jQuery('#mainNav').superfish(sfOptions);
+  var mainNav = jQuery('#primary-menu').superfish(sfOptions);
 
 
 /* 	============================================
